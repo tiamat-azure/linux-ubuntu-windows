@@ -38,6 +38,11 @@ Source :
 
     msiexec.exe /package PowerShell-<version>-win-<os-arch>.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
 
+or one-liner install with :
+
+    iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI"
+
+
 - WSL2 install : 
   - https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
   - [install-wsl-2-on-windows-10](https://www.thomasmaurer.ch/2019/06/install-wsl-2-on-windows-10/)

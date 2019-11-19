@@ -14,11 +14,33 @@ This project is intended to log software, libraries and frameworks installation 
 ver
 
 Microsoft Windows [version 10.0.18362.476]
+
+# check PowerShell version
+$PSVersionTable
+
+Name                           Value
+----                           -----
+PSVersion                      5.1.18362.145
+PSEdition                      Desktop
+PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+BuildVersion                   10.0.18362.145
+CLRVersion                     4.0.30319.42000
+WSManStackVersion              3.0
+PSRemotingProtocolVersion      2.3
+SerializationVersion           1.1.0.1
+
 ```
 
 Source : 
-- https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
-- [install-wsl-2-on-windows-10](https://www.thomasmaurer.ch/2019/06/install-wsl-2-on-windows-10/)
+- PowerShell 6 install : 
+  - doc : https://docs.microsoft.com/fr-fr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6
+  - git url for PowerShell-6.2.3-win-x64.msi : https://github.com/PowerShell/PowerShell/releases/tag/v6.2.3  
+
+    msiexec.exe /package PowerShell-<version>-win-<os-arch>.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
+
+- WSL2 install : 
+  - https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
+  - [install-wsl-2-on-windows-10](https://www.thomasmaurer.ch/2019/06/install-wsl-2-on-windows-10/)
 
 - Enable the Windows Subsystem for Linux
 

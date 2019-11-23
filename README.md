@@ -116,8 +116,9 @@ sudo apt auto-remove
 ```
 
 # Configure bash aliases
-
-> doc: [bash-aliases-mac-centos-linux-unix.html](https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html)
+doc :
+>- [bash-aliases-mac-centos-linux-unix.html](https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html)
+> - [7-super-useful-aliases-to-make-your-development-life-easier](https://codeburst.io/7-super-useful-aliases-to-make-your-development-life-easier-fef1ee7f9b73)
 
 edit file `~/.bashrc` and add following aliases
 
@@ -126,10 +127,23 @@ edit file `~/.bashrc` and add following aliases
 # Aliases
 #======================================#
 
+# Reload ~/.bashrc
+alias sourceb="source ~/.bashrc"
+
+# Show my ip address
+alias myip="curl http://ipecho.net/plain; echo"
+
+## mkdir && cd
+alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
+
+## git
+alias gac="git add . && git commit -a -m "
+
+## npm
+alias nis="npm install --save "
+
 ## VS Code
 alias coder='code -n .'
-
-alias c='clear'
 
 ## get rid of command not found ##
 alias cd..='cd ..'
@@ -143,8 +157,11 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 
 # handy short cuts #
+alias c='clear'
 alias h='history'
+alias hs='history | grep'
 alias j='jobs -l'
+
 
 # Stop after sending count ECHO_REQUEST packets #
 alias ping='ping -c 5'
@@ -183,14 +200,19 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 alias cpuinfo='lscpu'
 
 ## set some other defaults ##
-alias df='df -H'
+alias df='df -hPT | column -t'
 alias du='du -ch'
-```
 
+## Date and Time Aliases
+alias d='date +"%F"'
+alias now='date +"%F %T"'
+```
 
 # Install Java
 
-> Doc : [how-to-install-java-with-apt-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
+Doc :
+> [how-to-install-java-with-apt-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
+> [install-and-manage-multiple-java-versions-on-linux-using-alternatives](https://dev.to/thegroo/install-and-manage-multiple-java-versions-on-linux-using-alternatives-5e93)
 
 ```bash
 # Check java version
@@ -317,11 +339,6 @@ nvm --version && node -v && npm -v
 v12.13.0
 6.12.0
 ```
-
-# Install Java
-
-> Doc : [install-and-manage-multiple-java-versions-on-linux-using-alternatives](https://dev.to/thegroo/install-and-manage-multiple-java-versions-on-linux-using-alternatives-5e93)
-
 
 
 # Install Docker

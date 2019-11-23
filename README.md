@@ -96,7 +96,7 @@ wsl --set-default-version 2
 ```
 # Update Linux packages
 
-Doc : https://tecadmin.net/install-updates-on-ubuntu-via-command-line/
+> Doc : [install-updates-on-ubuntu-via-command-line](https://tecadmin.net/install-updates-on-ubuntu-via-command-line/)
 
 ```bash
 # Fetch the update for all your repositories
@@ -111,6 +111,38 @@ sudo apt-get dist-upgrade
 # Apply security updates only
 sudo apt-get install unattended-upgrades
 ```
+
+# Install Java
+
+> Doc : [how-to-install-java-with-apt-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
+
+```bash
+# Check java version
+java -version
+
+# Install openjdk 8 and 11
+sudo apt install openjdk-8-jre-headless -y
+sudo apt install openjdk-8-jdk-headless -y
+#sudo apt install openjdk-11-jre-headless -y
+#sudo apt install openjdk-11-jdk-headless -y
+
+# Check java version
+java -version
+
+openjdk version "1.8.0_222"
+OpenJDK Runtime Environment (build 1.8.0_222-8u222-b10-1ubuntu1~18.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
+
+# Check javac version
+javac -version
+
+javac 1.8.0_222
+
+# Managing JVM versions installed
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+```
+
 
 # Configure Git
 

@@ -141,6 +141,28 @@ javac 1.8.0_222
 # Managing JVM versions installed
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
+
+# Configure JAVA_HOME environement variable
+sudo nano /etc/environment
+
+# Set JAVA_HOME
+JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+
+# Apply modifications
+source /etc/environment
+
+# Verify
+echo $JAVA_HOME
+
+# Verify java alternatives
+update-java-alternatives --list
+
+java-1.11.0-openjdk-amd64      1111       /usr/lib/jvm/java-1.11.0-openjdk-amd64
+java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
+
+# Switch jvm with update-java-alternatives command
+update-java-alternatives -l
+sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 ```
 
 

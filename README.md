@@ -94,6 +94,23 @@ wsl --set-version Ubuntu-18.04 2
 # Set WSL 2 as the default version to use for futur Linux distro installation
 wsl --set-default-version 2
 ```
+# Update Linux packages
+
+Doc : https://tecadmin.net/install-updates-on-ubuntu-via-command-line/
+
+```bash
+# Fetch the update for all your repositories
+sudo apt update
+
+# Upgrade all the packages to latest available versions
+sudo apt-get upgrade
+
+# Handle changing dependencies and remove obsolete package
+sudo apt-get dist-upgrade
+
+# Apply security updates only
+sudo apt-get install unattended-upgrades
+```
 
 # Configure Git
 
@@ -124,6 +141,12 @@ nvm --version && node -v && npm -v
 v12.13.0
 6.12.0
 ```
+
+# Install Java
+
+> Doc : [install-and-manage-multiple-java-versions-on-linux-using-alternatives](https://dev.to/thegroo/install-and-manage-multiple-java-versions-on-linux-using-alternatives-5e93)
+
+
 
 # Install Docker
 

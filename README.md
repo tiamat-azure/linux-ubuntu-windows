@@ -38,30 +38,61 @@ Source :
 
     msiexec.exe /package PowerShell-<version>-win-<os-arch>.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
 
-or one-liner install with :
+Install PowerShell 6 :
 
+```bash
+    # One liner install
     iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI"
 
+    # Check PowerShell version (from PS 6 Application))
+    $PSVersionTable
 
-- WSL2 install : 
+    Name                           Value
+    ----                           -----
+    PSVersion                      6.2.3
+    PSEdition                      Core
+    GitCommitId                    6.2.3
+    OS                             Microsoft Windows 10.0.19025
+    Platform                       Win32NT
+    PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0…}
+    PSRemotingProtocolVersion      2.3
+    SerializationVersion           1.1.0.1
+    WSManStackVersion              3.0
+```
+
+> Alternative install
+>   - doc : https://docs.microsoft.com/fr-fr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6
+>  - git url for PowerShell-6.2.3-win-x64.msi : https://github.com/PowerShell/PowerShell/releases/tag/v6.2.3  
+>
+>```bash
+>msiexec.exe /package PowerShell-<version>-win-<os-arch>.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
+>```
+
+
+WSL2 install documentation : 
   - https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
   - [install-wsl-2-on-windows-10](https://www.thomasmaurer.ch/2019/06/install-wsl-2-on-windows-10/)
 
-- Enable the Windows Subsystem for Linux
+Enable the Windows Subsystem for Linux
 
-        Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
-- Install a Linux distro for the Windows Subsystem for Linux
+Install a Linux distro for the Windows Subsystem for Linux
 
-- Enable the Virtual Machine Platform feature
+Enable the Virtual Machine Platform feature
 
-        Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+    Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 
-- Set WSL distro to use version 2
+Set WSL distro to use version 2
+```bash
+# List Linux distro installed
+wsl -l -v
 
-```powershell
-wsl -l
+# Set Ubuntu-18.04 Linux distro to use WSL 2
+wsl --set-version Ubuntu-18.04 2
 
+# Set WSL 2 as the default version to use for futur Linux distro installation
+wsl --set-default-version 2
 ```
 
 # Configure Git

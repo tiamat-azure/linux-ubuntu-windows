@@ -110,7 +110,83 @@ sudo apt-get dist-upgrade
 
 # Apply security updates only
 sudo apt-get install unattended-upgrades
+
+# Clean unused packages
+sudo apt auto-remove
 ```
+
+# Configure bash aliases
+
+> doc: [bash-aliases-mac-centos-linux-unix.html](https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html)
+
+edit file `~/.bashrc` and add following aliases
+
+```bash
+#======================================#
+# Aliases
+#======================================#
+
+## VS Code
+alias coder='code -n .'
+
+alias c='clear'
+
+## get rid of command not found ##
+alias cd..='cd ..'
+ 
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+# handy short cuts #
+alias h='history'
+alias j='jobs -l'
+
+# Stop after sending count ECHO_REQUEST packets #
+alias ping='ping -c 5'
+# Do not wait interval 1 second, go fast #
+alias fastping='ping -c 100 -s.2'
+
+# update packages
+alias apt-get="sudo apt-get"
+ 
+# update on one command
+alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt auto-remove'
+alias updatey='sudo apt-get update --yes && sudo apt-get upgrade --yes && sudo apt-get dist-upgrade --yes && sudo apt auto-remove'
+alias updatesys="sudo apt-get install unattended-upgrades"
+alias updateall='sudo apt-get update --yes && sudo apt-get upgrade --yes && sudo apt-get dist-upgrade --yes && sudo apt-get install unattended-upgrades && sudo apt auto-remove'
+
+# become root #
+alias root='sudo -i'
+alias su='sudo -i'
+
+## NGINX
+alias nginxreload='sudo /usr/local/nginx/sbin/nginx -s reload'
+alias nginxtest='sudo /usr/local/nginx/sbin/nginx -t'
+
+## pass options to free ##
+alias meminfo='free -m -l -t'
+ 
+## get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+ 
+## get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+ 
+## Get server cpu info ##
+alias cpuinfo='lscpu'
+
+## set some other defaults ##
+alias df='df -H'
+alias du='du -ch'
+```
+
 
 # Install Java
 
@@ -164,7 +240,53 @@ java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
 update-java-alternatives -l
 sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 ```
+# Install SDKMAN! 
 
+```bash
+# Install
+curl -s "https://get.sdkman.io" | bash
+
+# Apply 
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Check version
+sdk version
+```
+
+# Install Gradle (with sdkman)
+
+```bash
+# Install gradle latest version
+sdk i gradle
+
+# Check gradle version
+gradle -v
+
+------------------------------------------------------------
+Gradle 6.0.1
+------------------------------------------------------------
+
+Build time:   2019-11-18 20:25:01 UTC
+Revision:     fad121066a68c4701acd362daf4287a7c309a0f5
+
+Kotlin:       1.3.50
+Groovy:       2.5.8
+Ant:          Apache Ant(TM) version 1.10.7 compiled on September 1 2019
+JVM:          1.8.0_222 (Private Build 25.222-b10)
+OS:           Linux 4.19.79-microsoft-standard amd64
+
+# List gradle available versions
+sdk ls gradle
+
+# Install gradle 5
+sdk i gradle 5.6.4
+
+# Use gradle specific version
+sdk u gradle 6.0.1
+
+# Check GRADLE_HOME environment variable
+echo $GRADLE_HOME
+```
 
 # Configure Git
 

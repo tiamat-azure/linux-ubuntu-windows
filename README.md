@@ -1,4 +1,4 @@
-# Linux UBUNTU on Windows 10 (WSL)
+# Configuring UBUNTU 18 on Windows Subsystem for Linux (WSL 2)
 
 ![Header](img/header.png)
 

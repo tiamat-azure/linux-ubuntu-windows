@@ -2,7 +2,7 @@ For better User eXperience check Website : [tiamat-azure.github.io][site]
 
 # Linux UBUNTU on Windows 10 (WSL)
 
-![Header](img/header.jpg)
+![Header](img/header.png)
 
 This project is intended to log software, libraries and frameworks installation on Linux UBUNTU 18 Windows Subsystem.
 

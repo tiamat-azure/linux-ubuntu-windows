@@ -1,13 +1,12 @@
-For better User eXperience check Website : [tiamat-azure.github.io][site]
-
 # Linux UBUNTU on Windows 10 (WSL)
 
 ![Header](img/header.png)
 
 This project is intended to log software, libraries and frameworks installation on Linux UBUNTU 18 Windows Subsystem.
 
+For better User eXperience check Website: [tiamat-azure.github.io][site]
 
-# Install Linux UBUNTU in WSL 2
+## Install Linux UBUNTU in WSL 2
 
 ```bash
 # check Windows version
@@ -31,14 +30,15 @@ SerializationVersion           1.1.0.1
 
 ```
 
-Source : 
-- PowerShell 6 install : 
-  - doc : https://docs.microsoft.com/fr-fr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6
-  - git url for PowerShell-6.2.3-win-x64.msi : https://github.com/PowerShell/PowerShell/releases/tag/v6.2.3  
+Source:
 
-    msiexec.exe /package PowerShell-<version>-win-<os-arch>.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
+- PowerShell 6 install:
+  - doc: [installing-powershell-core-on-windows](https://docs.microsoft.com/fr-fr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6)
+  - git url for PowerShell-6.2.3-win-x64.msi: [PowerShell/releases/tag/v6.2.3](https://github.com/PowerShell/PowerShell/releases/tag/v6.2.3)
 
-Install PowerShell 6 :
+    msiexec.exe /package PowerShell-${version}-win-${os-arch}.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
+
+Install PowerShell 6:
 
 ```bash
     # One liner install
@@ -61,29 +61,35 @@ Install PowerShell 6 :
 ```
 
 > Alternative install
->   - doc : https://docs.microsoft.com/fr-fr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6
->  - git url for PowerShell-6.2.3-win-x64.msi : https://github.com/PowerShell/PowerShell/releases/tag/v6.2.3  
+> [installing-powershell-core-on-windows](https://docs.microsoft.com/fr-fr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6)
+>
+> git url for PowerShell-6.2.3-win-x64.msi: [PowerShell/releases/tag/v6.2.3](https://github.com/PowerShell/PowerShell/releases/tag/v6.2.3)  
 >
 >```bash
 >msiexec.exe /package PowerShell-<version>-win-<os-arch>.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
 >```
 
+WSL2 install documentation:
 
-WSL2 install documentation : 
-  - https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
-  - [install-wsl-2-on-windows-10](https://www.thomasmaurer.ch/2019/06/install-wsl-2-on-windows-10/)
+- [docs.microsoft.com/wsl2-install](https://docs.microsoft.com/en-us/windows/wsl/wsl2-install)
+- [install-wsl-2-on-windows-10](https://www.thomasmaurer.ch/2019/06/install-wsl-2-on-windows-10/)
 
-Enable the Windows Subsystem for Linux
+Enable the Windows Subsystem for Linux:
 
-    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```bash
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
 
-Install a Linux distro for the Windows Subsystem for Linux
+Install a Linux distro for the Windows Subsystem for Linux.
 
-Enable the Virtual Machine Platform feature
+Enable the Virtual Machine Platform feature:
 
-    Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+```bash
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+```
 
-Set WSL distro to use version 2
+Set WSL distro to use version 2:
+
 ```bash
 # List Linux distro installed
 wsl -l -v
@@ -94,9 +100,10 @@ wsl --set-version Ubuntu-18.04 2
 # Set WSL 2 as the default version to use for futur Linux distro installation
 wsl --set-default-version 2
 ```
-# Update Linux packages
 
-> Doc : [install-updates-on-ubuntu-via-command-line](https://tecadmin.net/install-updates-on-ubuntu-via-command-line/)
+## Update Linux packages
+
+> Doc: [install-updates-on-ubuntu-via-command-line](https://tecadmin.net/install-updates-on-ubuntu-via-command-line/)
 
 ```bash
 # Fetch the update for all your repositories
@@ -115,10 +122,12 @@ sudo apt-get install unattended-upgrades
 sudo apt auto-remove
 ```
 
-# Configure bash aliases
-doc :
->- [bash-aliases-mac-centos-linux-unix.html](https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html)
-> - [7-super-useful-aliases-to-make-your-development-life-easier](https://codeburst.io/7-super-useful-aliases-to-make-your-development-life-easier-fef1ee7f9b73)
+## Configure bash aliases
+
+doc:
+> [bash-aliases-mac-centos-linux-unix.html](https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html)
+>
+> [7-super-useful-aliases-to-make-your-development-life-easier](https://codeburst.io/7-super-useful-aliases-to-make-your-development-life-easier-fef1ee7f9b73)
 
 edit file `~/.bashrc` and add following aliases
 
@@ -147,7 +156,7 @@ alias coder='code -n .'
 
 ## get rid of command not found ##
 alias cd..='cd ..'
- 
+
 ## a quick way to get out of current directory ##
 alias ..='cd ..'
 alias ...='cd ../../../'
@@ -170,7 +179,7 @@ alias fastping='ping -c 100 -s.2'
 
 # update packages
 alias apt-get="sudo apt-get"
- 
+
 # update on one command
 alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt auto-remove'
 alias updatey='sudo apt-get update --yes && sudo apt-get upgrade --yes && sudo apt-get dist-upgrade --yes && sudo apt auto-remove'
@@ -187,15 +196,15 @@ alias nginxtest='sudo /usr/local/nginx/sbin/nginx -t'
 
 ## pass options to free ##
 alias meminfo='free -m -l -t'
- 
+
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
- 
+
 ## get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
- 
+
 ## Get server cpu info ##
 alias cpuinfo='lscpu'
 
@@ -208,9 +217,9 @@ alias d='date +"%F"'
 alias now='date +"%F %T"'
 ```
 
-# Install Java
+## Install Java
 
-Doc :
+Doc:
 > [how-to-install-java-with-apt-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04)
 > [install-and-manage-multiple-java-versions-on-linux-using-alternatives](https://dev.to/thegroo/install-and-manage-multiple-java-versions-on-linux-using-alternatives-5e93)
 
@@ -262,20 +271,21 @@ java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
 update-java-alternatives -l
 sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 ```
-# Install SDKMAN! 
+
+## Install `SDKMAN!`
 
 ```bash
 # Install
 curl -s "https://get.sdkman.io" | bash
 
-# Apply 
+# Apply
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Check version
 sdk version
 ```
 
-# Install Gradle (with sdkman)
+## Install Gradle (with sdkman)
 
 ```bash
 # Install gradle latest version
@@ -310,7 +320,7 @@ sdk u gradle 6.0.1
 echo $GRADLE_HOME
 ```
 
-# Configure Git
+## Configure Git
 
 ```bash
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe" \
@@ -318,7 +328,7 @@ git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec
 && git config --global user.email "tiamat.azure@gmail.com"
 ```
 
-# Install nvm
+## Install nvm
 
 ```bash
 # Install nvm
@@ -340,62 +350,80 @@ v12.13.0
 6.12.0
 ```
 
+## Install Docker
 
-# Install Docker
-
-Doc :
+Doc:
 > [docker-running-seamlessly-in-windows-subsystem-linux](https://medium.com/faun/docker-running-seamlessly-in-windows-subsystem-linux-6ef8412377aa)
-> 
+>
 > [how-to-install-and-use-docker-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
-
 
 First thing’s first- lets get rid of any previous installations of Docker
 
-    sudo apt-get remove docker docker-engine docker.io containerd runc
+```bash
+sudo apt-get remove docker docker-engine docker.io containerd runc
+```
 
+First, update your existing list of packages:
 
+```bash
+sudo apt update
+```
 
-First, update your existing list of packages :
+Next, install a few prerequisite packages which let apt use packages over HTTPS:
 
+```bash
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+Then add the GPG key for the official Docker repository to your system:
+
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+Add the Docker repository to APT sources:
+
+```bash
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+```
+
+Next, update the package database with the Docker packages from the newly added repo:
+
+```bash
     sudo apt update
+```
 
-Next, install a few prerequisite packages which let apt use packages over HTTPS :
+Make sure you are about to install from the Docker repo instead of the default Ubuntu repo:
 
-    sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```bash
+apt-cache policy docker-ce
+```
 
-Then add the GPG key for the official Docker repository to your system :
+Install Docker:
 
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```bash
+sudo apt install docker-ce
+```
 
-Add the Docker repository to APT sources :
+You can list available versions included the one installed locally:
 
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+```bash
+apt list -a docker-ce
+```
 
-Next, update the package database with the Docker packages from the newly added repo :
+Finally, we need to add your current user to the ‘docker’ group so that you are allowed to interface with the Docker Engine which will be running on your system as root:
 
-    sudo apt update
+```bash
+sudo usermod -aG docker $USER
+```
 
-Make sure you are about to install from the Docker repo instead of the default Ubuntu repo :
+Now, we need to start Docker’s Service with Windows. We'll create a new script:
 
-    apt-cache policy docker-ce
+```bash
+sudo nano /usr/local/sbin/start_docker.sh
+```
 
-Install Docker :
-
-    sudo apt install docker-ce
-
-You can list available versions included the one installed locally :
-
-    apt list -a docker-ce
-
-Finally, we need to add your current user to the ‘docker’ group so that you are allowed to interface with the Docker Engine which will be running on your system as root :
-
-    sudo usermod -aG docker $USER
-
-Now, we need to start Docker’s Service with Windows. We'll create a new script :
-
-    sudo nano /usr/local/sbin/start_docker.sh
-
-With the following content :
+With the following content:
 
 ```bash
     #!/usr/bin/env bash
@@ -404,26 +432,30 @@ With the following content :
     sudo service docker start
 ```
 
-Enable execution + execute it :
+Enable execution + execute it:
 
 ```bash
-    sudo chmod +x /usr/local/sbin/start_docker.sh
+sudo chmod +x /usr/local/sbin/start_docker.sh
 
-    # Lock down edit privileges
-    sudo chmod 755 /usr/local/sbin/start_docker.sh
-    /bin/sh /usr/local/sbin/start_docker.sh
+# Lock down edit privileges
+sudo chmod 755 /usr/local/sbin/start_docker.sh
+/bin/sh /usr/local/sbin/start_docker.sh
 ```
-Next, we need to call our script with as root without user input :
 
-    sudo nano /etc/sudoers
+Next, we need to call our script with as root without user input:
 
-And add the following to the bottom of the file :
 ```bash
-    # Enable docker services to start without sudo
-    <your username here> ALL=(ALL:ALL) NOPASSWD: /bin/sh /usr/local/sbin/start_docker.sh
+sudo nano /etc/sudoers
 ```
 
-Finally, start docker in an elevated prompt when Windows boots :
+And add the following to the bottom of the file:
+
+```bash
+# Enable docker services to start without sudo
+<your username here> ALL=(ALL:ALL) NOPASSWD: /bin/sh /usr/local/sbin/start_docker.sh
+```
+
+Finally, start docker in an elevated prompt when Windows boots:
 
 Windows Task Scheduler > Create Task + select “Run with highest privileges”.
 
@@ -437,18 +469,21 @@ New Action `C:\Windows\System32\bash.exe` and command argument `-c "sudo /bin/sh
 
 ![task-scheduler-3](img/task-scheduler-3.png)
 
-Right click the task we created in the Task Scheduler library and click Run! 
+Right click the task we created in the Task Scheduler library and click Run!
 
-Docker version :
+Docker version:
 
+```bash
     docker -v
 
     Docker version 19.03.5, build 633a0ea838
+```
 
-Test docker :
+Test docker:
 
+```bash
     docker run --rm hello-world
-
+```
 
 [jhi]: https://www.jhipster.tech/
 [sb]: https://spring.io/projects/spring-boot

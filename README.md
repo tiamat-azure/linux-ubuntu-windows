@@ -343,13 +343,103 @@ v12.13.0
 
 # Install Docker
 
-Excellent blog reading : [docker-running-seamlessly-in-windows-subsystem-linux](https://medium.com/faun/docker-running-seamlessly-in-windows-subsystem-linux-6ef8412377aa)
+Doc :
+> [docker-running-seamlessly-in-windows-subsystem-linux](https://medium.com/faun/docker-running-seamlessly-in-windows-subsystem-linux-6ef8412377aa)
+> 
+> [how-to-install-and-use-docker-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
+
+
+First thing’s first- lets get rid of any previous installations of Docker
+
+    sudo apt-get remove docker docker-engine docker.io containerd runc
 
 
 
+First, update your existing list of packages :
 
+    sudo apt update
 
+Next, install a few prerequisite packages which let apt use packages over HTTPS :
 
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+Then add the GPG key for the official Docker repository to your system :
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+Add the Docker repository to APT sources :
+
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+Next, update the package database with the Docker packages from the newly added repo :
+
+    sudo apt update
+
+Make sure you are about to install from the Docker repo instead of the default Ubuntu repo :
+
+    apt-cache policy docker-ce
+
+Install Docker :
+
+    sudo apt install docker-ce
+
+You can list available versions included the one installed locally :
+
+    apt list -a docker-ce
+
+Finally, we need to add your current user to the ‘docker’ group so that you are allowed to interface with the Docker Engine which will be running on your system as root :
+
+    sudo usermod -aG docker $USER
+
+Now, we need to start Docker’s Service with Windows. We'll create a new script :
+
+    sudo nano /usr/local/sbin/start_docker.sh
+
+With the following content :
+
+```bash
+    #!/usr/bin/env bash
+
+    sudo cgroupfs-mount
+    sudo service docker start
+```
+
+Enable execution + execute it :
+
+```bash
+    sudo chmod +x /usr/local/sbin/start_docker.sh
+
+    # Lock down edit privileges
+    sudo chmod 755 /usr/local/sbin/start_docker.sh
+    /bin/sh /usr/local/sbin/start_docker.sh
+```
+Next, we need to call our script with as root without user input :
+
+    sudo nano /etc/sudoers
+
+And add the following to the bottom of the file :
+```bash
+    # Enable docker services to start without sudo
+    <your username here> ALL=(ALL:ALL) NOPASSWD: /bin/sh /usr/local/sbin/start_docker.sh
+```
+
+Finally, start docker in an elevated prompt when Windows boots :
+
+Windows Task Scheduler > Create Task + select “Run with highest privileges”.
+![task-scheduler-1](img/task-scheduler-1.png)
+
+Trigger user logon
+![task-scheduler-2](img/task-scheduler-2.png)
+
+New Action `C:\Windows\System32\bash.exe` and command argument `-c "sudo /bin/sh /usr/local/sbin/start_docker.sh"`
+
+![task-scheduler-3](img/task-scheduler-3.png)
+
+Right click the task we created in the Task Scheduler library and click Run! 
+
+Test docker :
+
+    docker run --rm hello-world
 
 
 [jhi]: https://www.jhipster.tech/

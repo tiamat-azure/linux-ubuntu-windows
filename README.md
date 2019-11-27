@@ -426,9 +426,11 @@ And add the following to the bottom of the file :
 Finally, start docker in an elevated prompt when Windows boots :
 
 Windows Task Scheduler > Create Task + select “Run with highest privileges”.
+
 ![task-scheduler-1](img/task-scheduler-1.png)
 
 Trigger user logon
+
 ![task-scheduler-2](img/task-scheduler-2.png)
 
 New Action `C:\Windows\System32\bash.exe` and command argument `-c "sudo /bin/sh /usr/local/sbin/start_docker.sh"`

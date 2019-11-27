@@ -439,6 +439,12 @@ New Action `C:\Windows\System32\bash.exe` and command argument `-c "sudo /bin/sh
 
 Right click the task we created in the Task Scheduler library and click Run! 
 
+Docker version :
+
+    docker -v
+
+    Docker version 19.03.5, build 633a0ea838
+
 Test docker :
 
     docker run --rm hello-world
